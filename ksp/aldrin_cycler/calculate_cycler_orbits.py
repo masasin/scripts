@@ -2,7 +2,6 @@
 
 import numpy as np
 
-
 def find_orbits(SMA_inner, SOI_inner, T_synod, T_inner, n_mult=1, n=None):
     modulo = np.modf(T_synod)[0]
     n_round = 1 / modulo
@@ -25,4 +24,8 @@ def find_orbits(SMA_inner, SOI_inner, T_synod, T_inner, n_mult=1, n=None):
     print(result)
     return result
 
-find_orbits(13599840256, 84159286, 2+1/7, 365)  # Kerbin with an almost Duna
+kerbin_sma = 13599840256  # metres
+kerbin_soi = 84159286  # metres
+kerbin_year = 106.5  # days
+
+find_orbits(kerbin_sma, kerbin_soi, 2+1/7, kerbin_year)  # Kerbin with an almost Duna
