@@ -15,8 +15,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-"""
-File: merge_branch.py
+__doc__="""
+File: {name}
 Author: Jean Nassar
 Email: jeannassar5@gmail.com
 Github: https://github.com/masasin
@@ -30,9 +30,9 @@ compatible with Python versions 2 and 3.
 Inspired by: http://www.jperla.com/blog/post/a-clean-python-shell-script
 
 Usage:
-    merge_branch.py -u | -b [--upstream=<branch>]
-    merge_branch.py -h | --help
-    merge_branch.py --version
+    {name} -u | -b [--upstream=<branch>]
+    {name} -h | --help
+    {name} --version
 
 Options:
     -h --help                Show this screen.
@@ -41,7 +41,7 @@ Options:
     -b --merge-branch        Merge the current branch into upstream; force -u.
     -U --upstream=<branch>   The branch to be merged. [default: develop]
 
-"""
+""".format(name=__file__)
 __version__ = "0.1"
 
 import re

@@ -20,8 +20,8 @@
 # DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 # OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-"""
-File: get_interfaces.py
+__doc__ = """
+File: {name}
 Author: Jean Nassar
 Email: jeannassar5@gmail.com
 Github: https://github.com/masasin
@@ -30,9 +30,9 @@ Description: Get a list of network interfaces on Linux.
 This code is compatible with Python versions 2 and 3.
 
 Usage:
-    get_interfaces.py [-e] [-a | -ai]
-    get_interfaces.py -h | --help
-    get_interfaces.py --version
+    {name} [-e] [-a | -ai]
+    {name} -h | --help
+    {name} --version
 
 Options:
     -h --help       Show this screen.
@@ -41,7 +41,7 @@ Options:
     -e --external   Only show external interfaces, with MAC addresses.
     -i --ip-only    Only show IP addresses.
 
-"""
+""".format(name=__file__)
 __version__ = "0.1"
 
 from collections import namedtuple
