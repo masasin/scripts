@@ -82,7 +82,7 @@ def get_current_branch():
 
     """
     try:
-        status = str(git("status"))
+        status = str(git.status())
     except sh.ErrorReturnCode as e:
         raise RuntimeError(e.stderr.decode())
 
@@ -123,11 +123,11 @@ def merge_upstream(upstream, current):
                            "not the upstream branch ({}).".format(upstream))
 
     logging.info("Switching to {upstream} branch".format(upstream=upstream))
-    git("checkout", upstream)
-    git("pull")
+    git.checkout(upstream)
+    git.pull()
     logging.info("Pulled latest changes from origin into {}".format(upstream))
     logging.debug("Ensuring {} has the latest changes".format(upstream))
-    pull_result = git("pull")
+    pull_result = git.pull()
     if "up-to-date" in pull_result:
         logging.debug("Local copy up-to-date")
     else:
@@ -136,13 +136,13 @@ def merge_upstream(upstream, current):
                           + "{pull_result}".format(pull_result=pull_result))
 
     logging.info("Switching back to {curr} branch".format(curr=current))
-    git("checkout", current)
-    git("merge", upstream)
+    git.checkout(current)
+    git.merge(upstream)
     logging.info("Merged latest {upstream} changes into {curr} branch"
                  .format(upstream=upstream, curr=current))
     logging.debug("Ensuring latest {upstream} changes in {curr} branch"
                   .format(upstream=upstream, curr=current))
-    merge_result = git("merge", upstream)
+    merge_result = git.merge(upstream)
     if "up-to-date" in merge_result:
         logging.debug("{curr} branch is up-to-date".format(curr=current))
     else:
@@ -180,18 +180,18 @@ def merge_branch(upstream, current):
 
     merge_upstream(upstream, current)
     logging.info("Switching to {upstream} branch".format(upstream=upstream))
-    git("checkout", upstream)
-    git("merge", current)
+    git.checkout(upstream)
+    git.merge(current)
     logging.info("Merged latest {curr} changes into {upstream} branch"
                  .format(curr=current, upstream=upstream))
 
-    git("branch", "-d", current)
+    git.branch("-d", current)
     logging.info("Safely deleted {curr}".format(curr=current))
 
-    git("push")
+    git.push()
     logging.info("Pushed {upstream} to origin".format(upstream=upstream))
     logging.debug("Ensuring that origin has latest {}".format(upstream))
-    push_result = git("push")
+    push_result = git.push()
     if "up-to-date" in push_result:
         logging.debug("Remote repository is up-to-date: {}".format(upstream))
     else:
