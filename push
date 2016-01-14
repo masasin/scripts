@@ -1,0 +1,41 @@
+#!/usr/bin/python3
+"""Use pushbullet to push notifications to my phone.
+
+Examples:
+$ push note "Title" "Note body"
+"""
+
+from pushbullet import PushBullet
+import sys
+
+pb = PushBullet("MYAPIKEYGOESHERE")
+
+command = sys.argv[1]
+
+if command == "note":
+    title, body = sys.argv[2:]
+    title = title.replace("\\n", "\n")
+    body = body.replace("\\n", "\n")
+    pb.push_note(title, body)
+
+elif command == "address":
+    name, address = sys.argv[2:]
+    pb.push_address(name, address)
+
+elif command == "list":
+    title = sys.argv[2]
+    items = sys.argv[3:]
+    title = title.replace("\\n", "\n")
+    for item in items:
+        item = item.replace("\\n", "\n")
+    pb.push_list(title, items)
+
+elif command == "link":
+    if sys.argv[4]:
+        title, url, body = sys.argv[2:]
+    else:
+        title, url = sys.argv[2:]
+        body = None
+    title = title.replace("\\n", "\n")
+    body = body.replace("\\n", "\n")
+    pb.push_link(title, url, body=body)
