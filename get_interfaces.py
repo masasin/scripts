@@ -110,8 +110,8 @@ def get_interfaces(external=False, active=False):
 
     """
     name_pattern = "^(\w+)\s"
-    mac_pattern = ".*?HWaddr[ ]([0-9A-Fa-f:]{17})" if external else ""
-    ip_pattern = ".*?\n\s+inet[ ]addr:((?:\d+\.){3}\d+)" if active else ""
+    mac_pattern = ".*?([0-9a-f:]{17})" if external else ""
+    ip_pattern = ".*?\n[\w\s]*:((?:\d+\.){3}\d+)" if active else ""
     pattern = re.compile("".join((name_pattern, mac_pattern, ip_pattern)),
                          flags=re.MULTILINE)
 
